@@ -27,18 +27,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const CalculationResultComponent = ({ result, isAvailable, isHistoricalDataAvailable, calculateResult }) => {
+const CalculationResultComponent = ({ result, isDataFetched, isHistoricalDataFetched, calculateResult }) => {
 
     const classes = useStyles();
     useEffect(() => {
-        console.log("update",isAvailable,isHistoricalDataAvailable)
+        if (isDataFetched && isHistoricalDataFetched) {
             const state = store.getState().selectReducer;
-            calculateResult(state.isDataAvailable, state.isHistoricalDataAvailable, state.data, state.historicalData, state.drivingRoutine);
-            
-    },
-    
-    [isAvailable,isHistoricalDataAvailable ]);
-  
+            calculateResult(state.isDataFetched, state.isHistoricalDataFetched, state.data, state.historicalData, state.drivingRoutine);
+        }
+    }, [isDataFetched, isHistoricalDataFetched]);
+
 
 
     return (
@@ -49,18 +47,20 @@ const CalculationResultComponent = ({ result, isAvailable, isHistoricalDataAvail
                     {result.error}
                 </Alert>
             }
-            {result != null && result.error === "" && isAvailable && isHistoricalDataAvailable &&
-                <TableContainer >
+            {result != null && result.error === "" &&
+            <Container maxWidth="sm">
+                <TableContainer>
                     <Table className={classes.table} aria-label="simple table">
                         <TableBody>
                             <TableRow>
-                                <TableCell component="th" scope="row">Rekomendowane opony: </TableCell>
+                                <TableCell component="th" scope="row" >Rekomendowane opony: </TableCell>
                                 <TableCell align="right"><b>{result.type == "winter" ? "ZIMOWE" : "LETNIE"}</b></TableCell>
                             </TableRow>
 
                         </TableBody>
                     </Table>
                 </TableContainer>
+                </Container>
             }
         </div>
 
@@ -69,27 +69,21 @@ const CalculationResultComponent = ({ result, isAvailable, isHistoricalDataAvail
 }
 
 CalculationResultComponent.propTypes = {
-    data: PropTypes.object,
-    isAvailable: PropTypes.bool.isRequired,
-    isHistoricalDataAvailable: PropTypes.bool.isRequired,
+    isDataFetched: PropTypes.bool.isRequired,
+    isHistoricalDataFetched: PropTypes.bool.isRequired,
     calculateResult: PropTypes.func.isRequired,
-    data: PropTypes.object,
-    historicalData: PropTypes.object,
 };
 
 const mapStateToProps = state => {
     return {
         result: state.selectReducer.result,
-        isAvailable: state.selectReducer.isDataAvailable,
-        isHistoricalDataAvailable: state.selectReducer.isHistoricalDataAvailable,
-        data: state.selectReducer.data,
-        historicalData: state.selectReducer.historicalData,
+        isDataFetched: state.selectReducer.isDataFetched,
+        isHistoricalDataFetched: state.selectReducer.isHistoricalDataFetched,
     }
 };
 const mapDispatchToProps = dispatch => {
     return {
-        calculateResult: (isAvailable, isHistoricalDataAvailable, data, historicalData, drivingRoutine) => 
-        { dispatch(calculateResult(isAvailable, isHistoricalDataAvailable, data, historicalData, drivingRoutine)); }
+        calculateResult: (isDataFetched, isHistoricalDataFetched, data, historicalData, drivingRoutine) => { dispatch(calculateResult(isDataFetched, isHistoricalDataFetched, data, historicalData, drivingRoutine)); }
     }
 
 };

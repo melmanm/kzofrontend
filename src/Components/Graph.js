@@ -5,10 +5,11 @@ import {
 import Container from '@material-ui/core/Container';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
+import { Grid } from '@material-ui/core';
 
 const GraphComponent = ({ data, isAvailable }) => {
     return (
-        <Container maxWidth="md">
+        <Grid>
             {isAvailable &&
                 <ResponsiveContainer aspect={4.0 / 1.75} width='100%' >
                     <LineChart data={data.values}
@@ -24,7 +25,7 @@ const GraphComponent = ({ data, isAvailable }) => {
                     </LineChart>
                 </ResponsiveContainer>
             }
-        </Container>
+        </Grid>
     );
 }
 

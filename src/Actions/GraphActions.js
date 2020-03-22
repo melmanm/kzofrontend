@@ -1,12 +1,20 @@
 import convert from 'xml-js';
-import {bestTempereture} from '../Constants/Constants.js';
-import {historyDays} from '../Constants/Constants.js';
+import {bestTemperature as bt} from '../Constants/Constants.js';
+import {historyDays as hd}  from '../Constants/Constants.js';
 import {getShortDate, getDateStringWithDayName} from '../Helpers/DateHelper.js';
 
+const bestTemperature = bt;
+const historyDays = hd;
+
+export const INIT_FETCHING_STATUS = "INIT_FETCHING_STATUS";
+
+export const initFetchingStatus = () => ({
+    type: "INIT_FETCHING_STATUS"
+});
 
 export const FETCH_FORECAST_SUCCESS = "FETCH_FORECAST_SUCCESS";
 
-export const forecastFetched = (data) => ({
+export const forecastFetchedSuccess = (data) => ({
     type: "FETCH_FORECAST_SUCCESS",
     data: data
 });
@@ -14,17 +22,25 @@ export const forecastFetched = (data) => ({
 
 export const FETCH_HISTORY_SUCCESS = "FETCH_HISTORY_SUCCESS";
 
-export const historyFetched = (data, station) => ({
+export const historyFetchedSuccess = (data, station) => ({
     type: "FETCH_HISTORY_SUCCESS",
     data: data,
     station: station
 });
 
-export const FETCH_COMPLETED = "FETCH_COMPLETED";
+export const FETCH_FORECAST = "FETCH_FORECAST";
 
-export const fetchCompleted = () => ({
-    type: "FETCH_COMPLETED",
+export const forecastFetched = () => ({
+    type: "FETCH_FORECAST",
 });
+
+
+export const FETCH_HISTORY = "FETCH_HISTORY";
+
+export const historyFetched = () => ({
+    type: "FETCH_HISTORY",
+});
+
 
 export const RESULT_CALCULATED = "RESULT_CALCULATED";
 
@@ -70,9 +86,9 @@ export const fetchForecast = (lon, lat) => (dispatch) => {
                 
             }
             data.values = data.values.filter(x=>x.morningMes && x.morningMes)
-            data.minValue = Math.min(...data.values.map(x => (Math.min(x.min, bestTempereture))));
-            data.maxValue = Math.max(...data.values.map(x => (Math.max(x.max, bestTempereture))));
-            data.ticks = [bestTempereture]
+            data.minValue = Math.min(...data.values.map(x => (Math.min(x.min, bestTemperature))));
+            data.maxValue = Math.max(...data.values.map(x => (Math.max(x.max, bestTemperature))));
+            data.ticks = [bestTemperature]
             for (let i = Math.floor(data.minValue); i <= Math.floor(data.maxValue); i++) {
                 if (i % 5 == 0) data.ticks.push(i);
             }
@@ -81,7 +97,8 @@ export const fetchForecast = (lon, lat) => (dispatch) => {
             return data
         }
         )
-        .then(json => {dispatch(forecastFetched(json))})
+        .then(json => {dispatch(forecastFetchedSuccess(json))})
+        .catch(erorr => dispatch(forecastFetched()))
         
 };
 
@@ -99,25 +116,26 @@ export const fetchHistory= (lon, lat) => (dispatch) => {
                 let result = {};
                 result.station = x.station;
                 result.values = x.data;
-                result.minValue = Math.min(...result.values.map(x => (Math.min(x.min, bestTempereture))));
-                result.maxValue = Math.max(...result.values.map(x => (Math.max(x.max, bestTempereture))));
-                result.ticks = [bestTempereture]
+                result.minValue = Math.min(...result.values.map(x => (Math.min(x.min, bestTemperature))));
+                result.maxValue = Math.max(...result.values.map(x => (Math.max(x.max, bestTemperature))));
+                result.ticks = [bestTemperature]
                 for (let i = Math.floor(result.minValue); i <= Math.floor(result.maxValue); i++) {
                     if (i % 5 == 0) result.ticks.push(i);
                 }
                 result.ticks.sort((a, b) => a - b);
                 return result; 
             })
-        .then(json => {dispatch(historyFetched(json, json.station))})
+        .then(json => {dispatch(historyFetchedSuccess(json, json.station))})
+        .catch(error=>dispatch(historyFetched()))
 }
 
-export const calculateResult = (isDataAvailable,isHistoricalDataAvailable,data,historicalData, drivingRoutine ) => (dispatch) =>
+export const calculateResult = (isDataFethed, isHistoricalDataFetched ,data,historicalData, drivingRoutine ) => (dispatch) =>
 {
     let result = {};
     result.error = "";
 
-    if(!isDataAvailable) {result.error = "Dane historyczne niedostępne."; dispatch(resultCalculated(result)); return;}
-    if(!isHistoricalDataAvailable) {result.error = "Prognoza niedostępna."; dispatch(resultCalculated(result)); return;}
+    if(isDataFethed && data == null) {result.error = "Dane historyczne niedostępne."; dispatch(resultCalculated(result)); return;}
+    if(isHistoricalDataFetched && historicalData == null) {result.error = "Prognoza niedostępna."; dispatch(resultCalculated(result)); return;}
 
     //takeDataDependingOnDrivingRoutine
     let historicalTemp =[];
@@ -137,9 +155,9 @@ export const calculateResult = (isDataAvailable,isHistoricalDataAvailable,data,h
     }
 
     let historicAvg = historicalTemp.reduce((previous, current) => current += previous) / historicalTemp.length;
-    historicAvg > bestTempereture ? result.type = "winter" : result.type = "summer"
+    historicAvg < bestTemperature ? result.type = "winter" : result.type = "summer"
 
     let forecastAvg = forecastTemp.reduce((previous, current) => current += previous) / forecastTemp.length;
-    forecastAvg > bestTempereture ? result.tip = "winter" : result.type = "summer"
+    forecastAvg < bestTemperature ? result.tip = "winter" : result.type = "summer"
     dispatch(resultCalculated(result));
 }

@@ -55,7 +55,7 @@ const WelcomeComponent = ({city}) => {
                     <DrivingRoutine />
                 </Grid>
                 <Grid className={classes.row}>
-                    <SearchButton />
+                    <SearchButton link={true}/>
                 </Grid>
                 <Typography variant="h5" className={classes.footer} align="center">
                     kiedyzmienicopony.pl

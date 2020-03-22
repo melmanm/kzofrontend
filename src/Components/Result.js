@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { SelectLocation as selectLocation } from '../Actions/SelectAction.js';
 import { connect } from 'react-redux';
 import { fetchForecast, fetchHistory } from '../Actions/GraphActions.js';
-import { Button, ButtonGroup, Typography } from '@material-ui/core';
+import { Button, ButtonGroup, Typography, Paper } from '@material-ui/core';
 import Search from './Search.js'
 import DrivingRoutine from './DrivingRoutineSelector.js';
 import GraphArea from './GraphArea.js';
@@ -17,7 +17,8 @@ import CalculationResult from './CalculationResult.js';
 
 const useStyles = makeStyles(theme => ({
     container: {
-        marginTop: 15
+        paddingTop: 25,
+        background: "white"
     },
 }))
 
@@ -27,7 +28,8 @@ const ResultComponent = () => {
     return (
         <div>
         <MenuBar></MenuBar>
-        <Container maxWidth="md" className={classes.container} >
+        <Container maxWidth="md" className={classes.container} style={{ minHeight: '100vh' }}>
+ 
         <Grid container spacing={1}  alignItems="center">
         <Grid item md={2} xs={12} >
             <DrivingRoutine type="icon"></DrivingRoutine>
@@ -43,6 +45,7 @@ const ResultComponent = () => {
         <CalculationResult></CalculationResult>
         <GraphArea>
         </GraphArea>
+       
        </Container>
        </div>
     )
