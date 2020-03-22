@@ -13,8 +13,8 @@ import { ThemeProvider } from '@material-ui/core';
 import {theme} from './Theme/theme.js'
 import Search from './Components/Search';
 import Welcome from './Components/Welcome';
-const store = createStore(appReducer, applyMiddleware(thunk));
-console.log(store.getState());
+import store from './store.js';
+
 const unsubscribe = store.subscribe(() => console.log(store.getState()));
 
 ReactDOM.render(<Provider store={store}>
