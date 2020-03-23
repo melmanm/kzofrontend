@@ -14,12 +14,14 @@ import {theme} from './Theme/theme.js'
 import Search from './Components/Search';
 import Welcome from './Components/Welcome';
 import store from './store.js';
+import CookieMessage from './Components/CookieMessage';
 
 const unsubscribe = store.subscribe(() => console.log(store.getState()));
 
 ReactDOM.render(<Provider store={store}>
     <ThemeProvider theme={theme}>
         <App/>
+        <CookieMessage/>
     </ThemeProvider>
     </Provider>, document.getElementById('root'));
 

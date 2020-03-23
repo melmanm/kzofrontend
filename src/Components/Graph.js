@@ -9,9 +9,9 @@ import { Grid } from '@material-ui/core';
 
 const GraphComponent = ({ data, isAvailable }) => {
     return (
-        <Grid>
+        <Grid alignItems="center">
             {isAvailable &&
-                <ResponsiveContainer aspect={4.0 / 1.75} width='100%' >
+                <ResponsiveContainer aspect={4.0 / 1.75} width='100%'>
                     <LineChart data={data.values}
                         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" />

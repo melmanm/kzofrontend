@@ -22,7 +22,13 @@ const useStyles = makeStyles(theme => ({
     root:
     {
         marginTop: 15
-    }
+    },
+    mainCell: {
+        fontSize: '16pt'
+    },
+    table: { 
+        width: '100%', 
+      }, 
 
 }));
 
@@ -30,6 +36,16 @@ const useStyles = makeStyles(theme => ({
 const CalculationResultComponent = ({ result, isDataFetched, isHistoricalDataFetched, calculateResult }) => {
 
     const classes = useStyles();
+
+    const translateRef = (reference) => {
+        if (reference == "max")
+            return "temp. maksymalna"
+        if (reference == "min")
+            return "temp. minimalna"
+        if (reference == "avg")
+            return "temp. średnia"
+    }
+
     useEffect(() => {
         if (isDataFetched && isHistoricalDataFetched) {
             const state = store.getState().selectReducer;
@@ -48,18 +64,52 @@ const CalculationResultComponent = ({ result, isDataFetched, isHistoricalDataFet
                 </Alert>
             }
             {result != null && result.error === "" &&
-            <Container maxWidth="sm">
-                <TableContainer>
-                    <Table className={classes.table} aria-label="simple table">
-                        <TableBody>
-                            <TableRow>
-                                <TableCell component="th" scope="row" >Rekomendowane opony: </TableCell>
-                                <TableCell align="right"><b>{result.type == "winter" ? "ZIMOWE" : "LETNIE"}</b></TableCell>
-                            </TableRow>
+                <Container>
+                    <Grid container spacing={2}>
+                        <Grid item sm={6}  className={classes.table}>
+                            <TableContainer >
+                                <Table aria-label="simple table">
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell style={{ fontsize: '15' }} component="th" scope="row" ><b>Rekomendowane opony: </b></TableCell>
+                                            <TableCell className={classes.mainCell} ><b>{result.type == "winter" ? "ZIMOWE" : "LETNIE"}</b></TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell component="th" scope="row" >Trend temperatury: </TableCell>
+                                            <TableCell>{`${result.trend > 0 ? "rosnący" : "malejący"} (${result.trend})`}</TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell component="th" scope="row" >Krzywa odniesienia: </TableCell>
+                                            <TableCell >{translateRef(result.reference)}</TableCell>
+                                        </TableRow>
 
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Grid>
+                        <Grid item sm={6} className={classes.table}>
+                            <TableContainer> 
+                                <Table className={classes.table} aria-label="simple table">
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell component="th" scope="row" >Średnia: </TableCell>
+                                            <TableCell className={classes.mainCell}><b>{Math.round(result.avg, 1)}°C</b></TableCell>
+                                        </TableRow>
+
+                                        <TableRow>
+                                            <TableCell component="th" scope="row" >Wartość minimalna: </TableCell>
+                                            <TableCell>{Math.round(result.min, 1)}°C</TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell component="th" scope="row" >Wartość maksymalna: </TableCell>
+                                            <TableCell>{Math.round(result.max, 1)}°C   </TableCell>
+                                        </TableRow>
+
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Grid>
+                    </Grid>
                 </Container>
             }
         </div>

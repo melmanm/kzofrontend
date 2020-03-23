@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 
 const SearchButtonComponent = ({ onSearchClick, lon, lat, link = false}) => {
     const history = useHistory();
-    const [disable, setDisable] = useState('');
+    const [disable, setDisable] = useState(false);
     useEffect(() => {
             setDisable(lon===null && lat === null);
     }, [lon, lat]);

@@ -16,13 +16,13 @@ export const getDateStringWithDayName = (date) =>{
 
 const getDayName = (day) =>{
     switch (day){
-        case 0: return "pn"
-        case 1: return "wt"
-        case 2: return "śr"
-        case 3: return "czw"
-        case 4: return "pt"
-        case 5: return "sob"
-        case 6: return "nd"
+        case 1: return "pn"
+        case 2: return "wt"
+        case 3: return "śr"
+        case 4: return "czw"
+        case 5: return "pt"
+        case 6: return "sob"
+        case 0: return "nd"
     }
 }
 

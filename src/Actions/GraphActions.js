@@ -2,6 +2,7 @@ import convert from 'xml-js';
 import {bestTemperature as bt} from '../Constants/Constants.js';
 import {historyDays as hd}  from '../Constants/Constants.js';
 import {getShortDate, getDateStringWithDayName} from '../Helpers/DateHelper.js';
+import regression from 'regression';
 
 const bestTemperature = bt;
 const historyDays = hd;
@@ -144,20 +145,48 @@ export const calculateResult = (isDataFethed, isHistoricalDataFetched ,data,hist
     if(drivingRoutine === "normal"){
         historicalTemp = historicalData.values.map(x=>(x.min + x.max)/2);
         forecastTemp = data.values.map(x=>(x.min + x.max)/2);
+        result.reference = "avg";
     }
     else if(drivingRoutine === "day"){
         historicalTemp = historicalData.values.map(x=>x.max);
         forecastTemp = data.values.map(x=>x.max);
+        result.reference = "max";
     }
     else if(drivingRoutine === "night"){
         historicalTemp = historicalData.values.map(x=>x.min);
         forecastTemp = data.values.map(x=>x.min);
+        result.reference = "min";
     }
 
-    let historicAvg = historicalTemp.reduce((previous, current) => current += previous) / historicalTemp.length;
-    historicAvg < bestTemperature ? result.type = "winter" : result.type = "summer"
 
-    let forecastAvg = forecastTemp.reduce((previous, current) => current += previous) / forecastTemp.length;
-    forecastAvg < bestTemperature ? result.tip = "winter" : result.type = "summer"
+    result.avgHistorical = historicalTemp.reduce((previous, current) => current += previous) / historicalTemp.length;
+    result.avgForecast = forecastTemp.reduce((previous, current) => current += previous) / forecastTemp.length;
+    let concat = historicalTemp.concat(forecastTemp);
+    result.avg = concat.reduce((previous, current) => current += previous) / concat.length;
+
+    result.trendHistorical = getTrend(historicalTemp);
+    result.trendForecast = getTrend(forecastTemp);
+    result.trend = getTrend(concat);
+
+    result.minForecast = Math.min(...forecastTemp);
+    result.maxForecast = Math.max(...forecastTemp);
+    result.minHistory= Math.min(...historicalTemp);
+    result.maxHistory = Math.max(...historicalTemp);
+    result.min = Math.min(...concat);
+    result.max = Math.max(...concat);
+
+    let factor = result.trend < 0 ? -1.5 : 0;
+
+    result.avg + factor > bestTemperature ?  result.type = "summer" : result.type = "winter"
+
     dispatch(resultCalculated(result));
+}
+
+const getTrend = (array) => {
+    let matrix = [];
+    for(let i =0 ; i<array.length; i++){
+        matrix.push([i, array[i]])
+    }
+    let result = regression.linear(matrix);
+    return result.equation[0];
 }
