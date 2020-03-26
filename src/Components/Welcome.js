@@ -40,12 +40,12 @@ const WelcomeComponent = ({city}) => {
                 
             <Container maxWidth="sm" className={classes.container} >
                 
-                <Typography variant="h4" className={classes.header}>
+                <Typography variant="h1" className={classes.header}>
                     Sprawdź, czy już czas zmienić opony!
                 </Typography>
                 <Grid className={classes.row}>
                     <Typography variant="h6">
-                        Wpisz nazwę miejscowości i wybierz kiedy używasz samochodu.
+                        Wpisz nazwę miejscowości i wybierz kiedy używasz samochodu, a my sprawdzimy czy już czas na sezonową wymianę opon.
                 </Typography>
                 </Grid>
                 <Grid className={classes.row}>
@@ -57,8 +57,8 @@ const WelcomeComponent = ({city}) => {
                 <Grid className={classes.row}>
                     <SearchButton link={true}/>
                 </Grid>
-                <Typography variant="h5" className={classes.footer} align="center">
-                    kiedyzmienicopony.pl
+                <Typography variant="h1" className={classes.footer} align="center">
+                    kiedy zmienic opony.pl
                 </Typography>
                 
             </Container>

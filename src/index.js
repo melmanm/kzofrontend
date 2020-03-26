@@ -15,6 +15,7 @@ import Search from './Components/Search';
 import Welcome from './Components/Welcome';
 import store from './store.js';
 import CookieMessage from './Components/CookieMessage';
+import Footer from './Components/Footer';
 
 const unsubscribe = store.subscribe(() => console.log(store.getState()));
 
@@ -22,6 +23,7 @@ ReactDOM.render(<Provider store={store}>
     <ThemeProvider theme={theme}>
         <App/>
         <CookieMessage/>
+        <Footer/>
     </ThemeProvider>
     </Provider>, document.getElementById('root'));
 

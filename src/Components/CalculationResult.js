@@ -71,8 +71,8 @@ const CalculationResultComponent = ({ result, isDataFetched, isHistoricalDataFet
                                 <Table aria-label="simple table">
                                     <TableBody>
                                         <TableRow>
-                                            <TableCell style={{ fontsize: '15' }} component="th" scope="row" ><b>Rekomendowane opony: </b></TableCell>
-                                            <TableCell className={classes.mainCell} ><b>{result.type == "winter" ? "ZIMOWE" : "LETNIE"}</b></TableCell>
+                                            <TableCell style={{fontWeight: "fontWeightBold" }} component="th" scope="row" >Rekomendowane opony: </TableCell>
+                                            <TableCell style={{fontWeight: "fontWeightBold" }} className={classes.mainCell} ><b>{result.type == "winter" ? "ZIMOWE" : "LETNIE"}</b></TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <TableCell component="th" scope="row" >Trend temperatury: </TableCell>
@@ -93,7 +93,7 @@ const CalculationResultComponent = ({ result, isDataFetched, isHistoricalDataFet
                                     <TableBody>
                                         <TableRow>
                                             <TableCell component="th" scope="row" >Średnia: </TableCell>
-                                            <TableCell className={classes.mainCell}><b>{Math.round(result.avg, 1)}°C</b></TableCell>
+                                            <TableCell style={{fontWeight: "fontWeightBold" }} className={classes.mainCell}><b>{Math.round(result.avg, 1)}°C</b></TableCell>
                                         </TableRow>
 
                                         <TableRow>

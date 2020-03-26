@@ -18,7 +18,8 @@ const SearchButtonComponent = ({ onSearchClick, lon, lat, link = false}) => {
     }, [lon, lat]);
 
     return (
-        <Button size="large" onClick={()=>{if(link) {history.push('/result')}; onSearchClick(lon,lat)}} 
+        <Button title="Kiedy wymienić opopny na letnie/ na zimowe" 
+        size="large" onClick={()=>{if(link) {history.push('/result')}; onSearchClick(lon,lat)}} 
         variant="contained" color="primary" fullWidth={true} disabled = {disable}>Sprawdź</Button>
     )
 }

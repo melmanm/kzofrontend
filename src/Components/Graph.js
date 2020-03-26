@@ -9,7 +9,7 @@ import { Grid } from '@material-ui/core';
 
 const GraphComponent = ({ data, isAvailable }) => {
     return (
-        <Grid alignItems="center">
+        <Grid>
             {isAvailable &&
                 <ResponsiveContainer aspect={4.0 / 1.75} width='100%'>
                     <LineChart data={data.values}

@@ -28,8 +28,7 @@ const ResultComponent = () => {
     return (
         <div>
         <MenuBar></MenuBar>
-        <Container maxWidth="md" className={classes.container} style={{ minHeight: '100vh' }}>
- 
+        <Container maxWidth="md" className={classes.container} style={{ minHeight: '100vh', padding: '3rem' }}> 
         <Grid container spacing={1}  alignItems="center">
         <Grid item md={2} xs={12} >
             <DrivingRoutine type="icon"></DrivingRoutine>

@@ -4,10 +4,23 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import GraphCompnent from './Graph.js'
 import { withRouter } from 'react-router-dom'
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, makeStyles } from '@material-ui/core';
 import store from '../store.js';
-const GraphAreaComponent = ({ data, historicalData }) => {
 
+const useStyles = makeStyles(theme => ({
+    credit:{
+        fontSize: 11,
+        color: '#666'
+    },
+    details:{
+        marginTop: '1rem',
+        marginBottom: '1rem',
+
+    }
+}));
+
+const GraphAreaComponent = ({ data, historicalData }) => {
+    const classes = useStyles();
     const [cityName, setcityName] = useState('');
     const [nearestCityName, setNerestCityName] = useState('');
     useEffect(() => {
@@ -22,14 +35,14 @@ const GraphAreaComponent = ({ data, historicalData }) => {
         <Container>
             {data !== null && historicalData !== null &&
                 <Grid container
-                    spacing={1} >
-                    <Grid xs={12} item align="center">
-                        <Typography >
+                     >
+                    <Grid xs={12} item align="center" >
+                        <Typography className={classes.details} variant="subtitle1" >
                             SZCZEGÓŁY
                         </Typography>
                     </Grid>
                     <Grid xs={12} item>
-                        <Typography variant="h5">
+                        <Typography variant="h2" >
                             Prognoza pogody dla lokalizacji: {cityName}
                         </Typography>
                     </Grid>
@@ -40,10 +53,10 @@ const GraphAreaComponent = ({ data, historicalData }) => {
                     </Grid>
                     <Grid xs={12} item>
                         <GraphCompnent data={data} isAvailable={data !== null}></GraphCompnent>
-                        <Typography align="right">źródło: MET Norway</Typography>
+                        <Typography className = {classes.credit} align="right">źródło: MET Norway</Typography>
                     </Grid >
                     <Grid xs={12} item>
-                        <Typography variant="h5">
+                        <Typography variant="h2">
                             Dane historyczne ze stacji: {nearestCityName}
                         </Typography>
                     </Grid>
@@ -54,7 +67,7 @@ const GraphAreaComponent = ({ data, historicalData }) => {
                     </Grid>
                     <Grid xs={12} item>
                         <GraphCompnent data={historicalData} isAvailable={historicalData !== null}></GraphCompnent>
-                        <Typography align="right">źródło: MET Norway</Typography>
+                        <Typography align="right" className = {classes.credit}>źródło: MET Norway</Typography>
                     </Grid>
                 </Grid>
             }</Container>
