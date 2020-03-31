@@ -16,6 +16,12 @@ const useStyles = makeStyles(theme => ({
         marginTop: '1rem',
         marginBottom: '1rem',
 
+    },
+    text:{
+        paddingTop:  '0',
+    }, 
+    title:{
+        
     }
 }));
 
@@ -42,12 +48,12 @@ const GraphAreaComponent = ({ data, historicalData }) => {
                         </Typography>
                     </Grid>
                     <Grid xs={12} item>
-                        <Typography variant="h2" >
+                        <Typography variant="h2" className={classes.title}>
                             Prognoza pogody dla lokalizacji: {cityName}
                         </Typography>
                     </Grid>
                     <Grid xs={12} item>
-                        <Typography>
+                        <Typography className={classes.text}>
                             {"10 - dniowa prognoza pogody uwzględniająca minimalną i maksymalną temperaturę. Zaznaczono linię optymalnej temperatury zmiany opon."}
                         </Typography>
                     </Grid>
@@ -56,13 +62,13 @@ const GraphAreaComponent = ({ data, historicalData }) => {
                         <Typography className = {classes.credit} align="right">źródło: MET Norway</Typography>
                     </Grid >
                     <Grid xs={12} item>
-                        <Typography variant="h2">
+                        <Typography variant="h2" className={classes.title}>
                             Dane historyczne ze stacji: {nearestCityName}
                         </Typography>
                     </Grid>
                     <Grid xs={12} item>
-                        <Typography>
-                            {"Historyczne dane pogodowe pobrane z najbliższej staccji pogodowej. Zaznaczono linię optymalnej temperatury zmiany opon."}
+                        <Typography className={classes.text}>
+                            {"Historyczne dane pogodowe pobrane z najbliższej stacji pogodowej. Zaznaczono linię optymalnej temperatury zmiany opon."}
                         </Typography>
                     </Grid>
                     <Grid xs={12} item>

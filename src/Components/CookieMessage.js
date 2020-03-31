@@ -11,10 +11,10 @@ const CookieMessage = () => {
 
   return (
     <CookieConsent
-      onAccept={() => { alert("yay!") }}
-      debug={true}
+      //onAccept={() => { alert("yay!") }}
+      //debug={true}
       disableStyles={false}
-      style={{ fontFamily: 'Barlow, Source Sans Pro, Roboto', opacity: 0.6 }}
+      style={{ fontFamily: 'Barlow, Source Sans Pro, Roboto', opacity: 0.8 }}
       buttonStyle={{ background: "transparent", color: "white", fontSize: '15pt', fontFamily: 'Barlow, Source Sans Pro, Roboto' }}
       buttonText="Rozumiem"
     //enableDeclineButton

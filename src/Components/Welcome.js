@@ -12,6 +12,7 @@ import DrivingRoutine from './DrivingRoutineSelector.js';
 import SearchButton from './SearchButton.js';
 import GraphArea from './GraphArea.js';
 import { Redirect, withRouter, Link } from 'react-router-dom';
+import Helmet from 'react-helmet';
 const useStyles = makeStyles(theme => ({
     container: {
 
@@ -27,43 +28,58 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const WelcomeComponent = ({city}) => {
+const WelcomeComponent = ({ city }) => {
     const classes = useStyles();
 
     return (
-        <Grid container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center"
-            style={{ minHeight: '100vh' }}>
+        <div>
+            <Helmet>
+                <title>Kiedy zmienić opony w Twoim mieście | kiedyzmienicopony.pl</title>
                 
-            <Container maxWidth="sm" className={classes.container} >
-                
-                <Typography variant="h1" className={classes.header}>
-                    Sprawdź, czy już czas zmienić opony!
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="theme-color" content="#000000" />
+                <meta
+                    name="description"
+                    content="Czy już czas na sezonową wymianę opon na ziomowe lub na letnie? Obliczamy rekomendacje zmiany opon dla Twojej lokalizacji."
+                />
+                <meta name="keywords" content="zmiana opon, kiedy wymienić opony, czy już wymienić opony, wymiana opon na letnie, wymiana opon na zimowe" />
+            </Helmet>
+
+
+            <Grid container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '100vh' }}>
+
+                <Container maxWidth="sm" className={classes.container} >
+
+                    <Typography variant="h1" className={classes.header}>
+                        Sprawdź, czy już czas zmienić opony!
                 </Typography>
-                <Grid className={classes.row}>
-                    <Typography variant="h6">
-                        Wpisz nazwę miejscowości i wybierz kiedy używasz samochodu, a my sprawdzimy czy już czas na sezonową wymianę opon.
+                    <Grid className={classes.row}>
+                        <Typography variant="h6">
+                            Wpisz nazwę miejscowości i wybierz kiedy używasz samochodu, a my sprawdzimy czy już czas na sezonową wymianę opon.
                 </Typography>
-                </Grid>
-                <Grid className={classes.row}>
-                    <Search />
-                </Grid>
-                <Grid className={classes.row}>
-                    <DrivingRoutine />
-                </Grid>
-                <Grid className={classes.row}>
-                    <SearchButton link={true}/>
-                </Grid>
-                <Typography variant="h1" className={classes.footer} align="center">
-                    kiedy zmienic opony.pl
+                    </Grid>
+                    <Grid className={classes.row}>
+                        <Search />
+                    </Grid>
+                    <Grid className={classes.row}>
+                        <DrivingRoutine />
+                    </Grid>
+                    <Grid className={classes.row}>
+                        <SearchButton link={true} />
+                    </Grid>
+                    <Typography variant="h1" className={classes.footer} align="center">
+                        kiedy zmienic opony.pl
                 </Typography>
-                
-            </Container>
-        </Grid>
-    
+
+                </Container>
+            </Grid>
+        </div>
+
     )
 
 }

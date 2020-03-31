@@ -57,13 +57,13 @@ const CalculationResultComponent = ({ result, isDataFetched, isHistoricalDataFet
 
     return (
         <div>
-            {result != null && result.error !== "" &&
+            {result != null && result.error !== "" && 
                 <Alert severity="error" className={classes.root}>
                     <AlertTitle>Coś poszło nie tak :(</AlertTitle>
                     {result.error}
                 </Alert>
             }
-            {result != null && result.error === "" &&
+            {result != null && result.error === "" && isDataFetched && isHistoricalDataFetched &&
                 <Container>
                     <Grid container spacing={2}>
                         <Grid item sm={6}  className={classes.table}>

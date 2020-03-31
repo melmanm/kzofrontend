@@ -10,6 +10,9 @@ const initialState = {
     historicalDataStation: "",
     isDataFetched: false,
     isHistoricalDataFetched: false,
+    isDataFetchInProgress: false,
+    isHistoricalDataFetchInProgress: false,
+
     drivingRoutine: "normal",
     city: null,
     result: null
@@ -28,14 +31,12 @@ function selectReducer(state = initialState, action) {
             return {
                 ...state,
                 data: action.data,
-                isDataFetched: true
             };
         case FETCH_HISTORY_SUCCESS:
             return {
                 ...state,
                 historicalData: action.data,
                 historicalDataStation: action.station,
-                isHistoricalDataFetched: true,
             };
         case SELECT_DRIVING_ROUTINE:
             return {
@@ -54,16 +55,21 @@ function selectReducer(state = initialState, action) {
                 isHistoricalDataFetched: false,
                 data: null,
                 historicalData: null,
+                isDataFetchInProgress: true,
+                isHistoricalDataFetchInProgress: true,
             };
         case FETCH_HISTORY:
             return {
                 ...state,
-                isHistoricalDataFetched: true
+                isHistoricalDataFetched: true,
+                isHistoricalDataFetchInProgress: false,
+               
             };
         case FETCH_FORECAST:
             return {
                 ...state,
-                isDataFetched: true
+                isDataFetched: true,
+                isDataFetchInProgress: false,
             };
         default: return state
     }

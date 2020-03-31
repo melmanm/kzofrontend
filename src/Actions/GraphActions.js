@@ -99,7 +99,7 @@ export const fetchForecast = (lon, lat) => (dispatch) => {
         }
         )
         .then(json => {dispatch(forecastFetchedSuccess(json))})
-        .catch(erorr => dispatch(forecastFetched()))
+        .finally(x => dispatch(forecastFetched()))
         
 };
 
@@ -127,7 +127,7 @@ export const fetchHistory= (lon, lat) => (dispatch) => {
                 return result; 
             })
         .then(json => {dispatch(historyFetchedSuccess(json, json.station))})
-        .catch(error=>dispatch(historyFetched()))
+        .finally(x=>dispatch(historyFetched()))
 }
 
 export const calculateResult = (isDataFethed, isHistoricalDataFetched ,data,historicalData, drivingRoutine ) => (dispatch) =>

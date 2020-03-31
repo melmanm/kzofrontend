@@ -13,6 +13,7 @@ import GraphArea from './GraphArea.js';
 import SearchButton from './SearchButton.js';
 import MenuBar from './MenuBar.js';
 import CalculationResult from './CalculationResult.js';
+import Spinner from './Spiner.js';
 
 
 const useStyles = makeStyles(theme => ({
@@ -41,6 +42,7 @@ const ResultComponent = () => {
             <SearchButton></SearchButton>
         </Grid>
         </Grid>
+        <Spinner></Spinner>
         <CalculationResult></CalculationResult>
         <GraphArea>
         </GraphArea>
