@@ -59,7 +59,7 @@ const GraphAreaComponent = ({ data, historicalData }) => {
                     </Grid>
                     <Grid xs={12} item>
                         <GraphCompnent data={data} isAvailable={data !== null}></GraphCompnent>
-                        <Typography className = {classes.credit} align="right">źródło: MET Norway</Typography>
+                        <Typography className = {classes.credit} align="right">na podstawie MET Norway</Typography>
                     </Grid >
                     <Grid xs={12} item>
                         <Typography variant="h2" className={classes.title}>
@@ -73,7 +73,7 @@ const GraphAreaComponent = ({ data, historicalData }) => {
                     </Grid>
                     <Grid xs={12} item>
                         <GraphCompnent data={historicalData} isAvailable={historicalData !== null}></GraphCompnent>
-                        <Typography align="right" className = {classes.credit}>źródło: MET Norway</Typography>
+                        <Typography align="right" className = {classes.credit}>na podstawie MET Norway</Typography>
                     </Grid>
                 </Grid>
             }</Container>

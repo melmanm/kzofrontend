@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -9,6 +9,7 @@ import {
   HashRouter,
   StaticRouter,
   Redirect,
+  useHistory,
 } from 'react-router-dom';
 import Welcome from './Components/Welcome';
 import GraphArea from './Components/GraphArea';
@@ -19,7 +20,15 @@ import ToSummer from './Components/StaticSites/ToSummer';
 import Rules from './Components/StaticSites/Rules';
 import ScrollToTop from './ScrollToTop';
 
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-162359441-1');
+
 function App() {
+  const history = useHistory();
+  useEffect(() => {
+    history.listen(x=>{ReactGA.pageview(x.pathname);});
+    ReactGA.pageview(history.location.pathname);
+}, []);
   return (
     <div>
       <ScrollToTop/>

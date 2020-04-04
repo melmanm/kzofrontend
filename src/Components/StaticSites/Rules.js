@@ -31,10 +31,10 @@ const RulesComponent = () => {
                 Celem serwisu jest wspomaganie użytkowników samochodów w decyzji o sezonowej zmianie opon. Na podstawie prognozy pogody oraz danych historycznych dokonywane są kalkulacje, których wynikiem jest nasza rekomendacja dotycząca rodzaju opon. Wynik jest aktualny w chwili kalkulacji. 
 </Typography>
 <Typography variant = "body1">
-Serwis oblicza rekomendacje dotyczące rodzaju opon na podstawie algorytmu matematycznego. Jest to jedynie nasza rekomendacja. Algorytm nie uwzględnia wszystkich warunków, okoliczności oraz indywidualnych preferencji. Decyzja o sezonowej wymianie opon powinna być podjęta indywidualnie przez użytkownika samochodu uwzględniając prze wszystkim bezpieczeństwo jazdy.
+Serwis oblicza rekomendacje dotyczące rodzaju opon na podstawie algorytmu matematycznego. Jest to jedynie nasza rekomendacja. Algorytm nie uwzględnia wszystkich warunków, okoliczności oraz indywidualnych preferencji. Decyzja o sezonowej wymianie opon powinna być podjęta indywidualnie przez użytkownika samochodu uwzględniając przede wszystkim bezpieczeństwo jazdy.
 </Typography>
 <Typography variant = "body1">
-Serwis prezentuje dane pogodowe dostawcy MET Norway, które pobierane są przez interfejs API.  Stawiamy sobie za cel dokładność naszych wskazań. Nie ponosimy jednak w żaden sposób odpowiedzialności za dane (w tym ich kompletność oraz aktualność). 
+Serwis prezentuje dane pogodowe dostawcy MET Norway, używane na podstwie Creative Commons 4.0 BY International (http://creativecommons.org/licenses/by/4.0), pobierane przez interfejs API. Stawiamy sobie za cel dokładność naszych wskazań. Nie ponosimy jednak w żaden sposób odpowiedzialności za dane (w tym ich kompletność oraz aktualność). 
 </Typography>
 
             </Container>

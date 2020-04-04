@@ -6,7 +6,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import { AlertTitle } from '@material-ui/lab';
-import { Link } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
   },
   link:{
       fontSize: 17,
-      textAlign: "center"
+      textAlign: "center",
+      color: '#50C83D'
   }
 }));
 
@@ -46,7 +47,7 @@ export default function InfoAlert() {
               <AlertTitle variant="subtitle1">Sprawdź czy juz wymienić opony w Twoim mieście!</AlertTitle>
              
              Na podstwawie prognoz pogody oraz danych historycznych obliczamy czy już wymienić opony w Twojej lokalizaji. 
-             <Link className={classes.link} title="Czy już wymienić opony?" href="/">Przejdź do analizy </Link>
+             <Link className={classes.link} title="Czy już wymienić opony?" to="/">Przejdź do analizy </Link>
         </Alert>
       </Collapse>
     </div>
