@@ -108,7 +108,7 @@ export const fetchHistory= (lon, lat) => (dispatch) => {
     if(lon === null && lat === null)
         return;
 
-    fetch(`https://us-central1-kiedyzmienicopony.cloudfunctions.net/app/history?key=${process.env.FIRESTORE_API_KEY}&lon=${lon}&lat=${lat}&number=${historyDays}`)
+    fetch(`https://us-central1-kiedyzmienicopony.cloudfunctions.net/app/history?key=${process.env.REACT_APP_FIRESTORE_API_KEY}&lon=${lon}&lat=${lat}&number=${historyDays}`)
         .then(response => response.json())
 
         .then(x => 

@@ -17,9 +17,7 @@ import store from './store.js';
 import CookieMessage from './Components/CookieMessage';
 import Footer from './Components/Footer';
 import { BrowserRouter, HashRouter, useHistory } from 'react-router-dom';
-
 //const unsubscribe = store.subscribe(() => console.log(store.getState()));
-
 
 ReactDOM.render(<Provider store={store}>
     <ThemeProvider theme={theme}>

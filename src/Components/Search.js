@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -13,15 +13,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import Container from '@material-ui/core/Container';
-import data from '../Constants/Cities.json';
+//import data from '../Constants/Cities.json';
 import parse from 'autosuggest-highlight/parse';
 import PropTypes from 'prop-types'
 import { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import { SelectLocation as selectLocation } from '../Actions/SelectAction.js';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { connect } from 'react-redux';
-import { fetchForecast, fetchHistory } from '../Actions/GraphActions.js';
-import { Button, ButtonGroup } from '@material-ui/core';
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -55,10 +54,15 @@ const useStyles = makeStyles(theme => ({
 
 
 const SearechComponent = ({ onSearch , city}) => {
-    const [inputValue, setInputValue] = React.useState('');
-    const handleChange = event => {
+    const [cities, setCityData] = React.useState([]);
+    useEffect(() => {
+        if (cities.length === 0) {
+            import('../Constants/Cities.json').then(background => {
+                setCityData(background.cities)
+               })
+        }
+    },[]);
 
-    };
     const classes = useStyles();
     const filterOptions = createFilterOptions({
         matchFrom: 'start',
@@ -66,11 +70,7 @@ const SearechComponent = ({ onSearch , city}) => {
         stringify: option => option.name,
     });
 
-    const cities = data.cities;
     return (
-        
-       
-
             <Autocomplete
                 value={ city || null}
                 className={classes.input}
