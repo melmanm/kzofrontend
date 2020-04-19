@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   link:{
-      fontSize: 17,
       textAlign: "center",
       color: '#50C83D'
   }
@@ -30,19 +29,18 @@ const CookieMessage = () => {
       //onAccept={() => { alert("yay!") }}
       //debug={true}
       disableStyles={false}
-      style={{ fontFamily: 'Barlow, Source Sans Pro, Roboto', opacity: 0.8 , fontSize: '13pt',}}
-      buttonStyle={{ background: "transparent", color: "white", fontSize: '15pt', fontFamily: 'Barlow, Source Sans Pro, Roboto' }}
-      buttonText="Rozumiem"
+      style={{ fontFamily: 'Barlow, Source Sans Pro, Roboto', opacity: 0.82 , fontSize: '11pt',}}
+      buttonStyle={{ background: "#50C83D", color: "white", fontSize: '15pt', fontFamily: 'Barlow, Source Sans Pro, Roboto', marginTop: '10px', marginBottom:'10px' }}
+      buttonText="Ok, Rozumiem"
     //enableDeclineButton
     //declineButtonText="Decline (optional)"
     //onDecline={() => {alert("nay!")}}
     >
-      Wykorzystujemy pliki cookies w celu zapewnienia stronie optymalnego działania oraz pozyskania danych dotyczących ruchu na stronie. Wiecej informacji znajdziesz w naszej {" "}
+      Wykorzystujemy pliki cookies w celu zapewnienia stronie optymalnego działania oraz pozyskania danych dotyczących ruchu na stronie. Wiecej informacji znajdziesz w {" "}
       <Link className={classes.link}  to="/polityka-prywatnosci">
         polityce prywatności
       </Link>.
       {" "}
-      <br/>
       Korzystanie z serwisu oznacza akceptację {" "}
       <Link className={classes.link}  to="/regulamin">
         regulaminu.

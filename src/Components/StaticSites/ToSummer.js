@@ -4,13 +4,14 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { Button, ButtonGroup, Typography, Paper, Breadcrumbs } from '@material-ui/core';
+import { Button, ButtonGroup, Typography, Paper, Breadcrumbs, Link as HashLink} from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import MenuBar from '../MenuBar.js';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import InfoAlert from '../InfoAlert.js';
 import summer from '../../img/summer.jpg'
 import Helmet from 'react-helmet';
-import { Link } from 'react-router-dom';
+
 const useStyles = makeStyles(theme => ({
     container: {
         paddingTop: 25,
@@ -80,20 +81,20 @@ const ToSummer = () => {
                         <Typography variant="h4">
                             Spis Treści
 </Typography>
-                        <Link className={classes.textItem} to="#kiedy-zmienic-na-letnie-charakterystyka" title="kiedy zmienić opony na letnie charakterystyka">
+                        <HashLink className={classes.textItem} href="#kiedy-zmienic-na-letnie-charakterystyka" title="kiedy zmienić opony na letnie charakterystyka">
                             1.	Charakterystyka opon letnich
-</Link>
-                        <Link className={classes.textItem} to="#kiedy-zmienic-na-letnie-dlaczego-zmienic" title="kiedy zmienić opony na letnie i dlaczego">
+</HashLink>
+                        <HashLink className={classes.textItem} href="#kiedy-zmienic-na-letnie-dlaczego-zmienic" title="kiedy zmienić opony na letnie i dlaczego">
                             2.	Dlaczego zmieniać opony na letnie?
-</Link>
-                        <Link className={classes.textItem} to="#kiedy-wymienic-na-letnie" title="czy już wymienić opony">
+</HashLink>
+                        <HashLink className={classes.textItem} href="#kiedy-wymienic-na-letnie" title="czy już wymienić opony">
                             3.	Kiedy wymienić opony na letnie?
-</Link>
-                        <Link className={classes.textItem} to="#ile-kosztuje-wymiana-na-letnie" title="ile kosztuje wymiana opon na letnie">
+</HashLink>
+                        <HashLink className={classes.textItem} href="#ile-kosztuje-wymiana-na-letnie" title="ile kosztuje wymiana opon na letnie">
                             4.	Ile kosztuje wymiana opon?
-</Link>
+</HashLink>
                     </Paper>
-                    <Typography variant="h2" id="#kiedy-zmienic-na-letnie-charakterystyka">
+                    <Typography variant="h2" id="kiedy-zmienic-na-letnie-charakterystyka">
                         1.	Charakterystyka opon letnich
 </Typography>
                     <Typography variant="body1" >

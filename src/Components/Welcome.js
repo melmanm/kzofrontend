@@ -14,6 +14,7 @@ import GraphArea from './GraphArea.js';
 import { Redirect, withRouter, Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import logo from '../img/logo.png'
+import ScrollToTop from '../ScrollToTop.js';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -41,6 +42,7 @@ const WelcomeComponent = ({ city }) => {
     
     return (
         <div>
+          
             <Helmet>
                 <title>Kiedy wymienić opony w na letnie, zimowe | kiedy zmienić opony .pl</title>
                 
@@ -92,6 +94,7 @@ const WelcomeComponent = ({ city }) => {
 
                 </Container>
             </Grid>
+           
         </div>
 
     )

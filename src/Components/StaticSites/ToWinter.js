@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { Button, ButtonGroup, Typography, Paper, Breadcrumbs } from '@material-ui/core';
+import { Button, ButtonGroup, Typography, Paper, Breadcrumbs, Link as HashLink } from '@material-ui/core';
 import MenuBar from '../MenuBar.js';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import InfoAlert from '../InfoAlert.js';
@@ -80,20 +80,20 @@ const ToWinter = () => {
                         <Typography variant="h4">
                             Spis Treści
 </Typography>
-                        <Link className={classes.textItem} to="kiedy-zmienic-na-zimowe-charakterystyka" title="kiedy zmienić opony na zimowe charakterystyka">
+                        <HashLink className={classes.textItem} href="#kiedy-zmienic-opony-na-zimowe-charakterystyka" title="kiedy zmienić opony na zimowe charakterystyka">
                             1.	Charakterystyka opon zimowych
-</Link>
-                        <Link className={classes.textItem} to="#kiedy-zmienic-na-zimowe-dlaczego-zmienic" title="kiedy zmienić opony na zimowe i dlaczego">
+</HashLink>
+                        <HashLink className={classes.textItem} href="#kiedy-zmienic-na-zimowe-dlaczego-zmienic" title="kiedy zmienić opony na zimowe i dlaczego">
                             2.	Dlaczego zmieniać opony na zimowe?
-</Link>
-                        <Link className={classes.textItem} to="#kiedy-wymienic-na-zimowe" title="czy już wymienić opony">
+</HashLink>
+                        <HashLink className={classes.textItem} href="#kiedy-wymienic-na-zimowe" title="czy już wymienić opony">
                             3.	Kiedy wymienić opony na zimowe?
-</Link>
-                        <Link className={classes.textItem} to="#ile-kosztuje-wymiana-na-zimowe" title="ile kosztuje wymiana opon na zimowe">
+</HashLink>
+                        <HashLink className={classes.textItem} href="#ile-kosztuje-wymiana-na-zimowe" title="ile kosztuje wymiana opon na zimowe">
                             4.	Ile kosztuje wymiana opon?
-</Link>
+</HashLink>
                     </Paper>
-                    <Typography variant="h2" id="#kiedy-zmienic-na-zimowe-charakterystyka">
+                    <Typography variant="h2" id="kiedy-zmienic-opony-na-zimowe-charakterystyka">
                         1.	Charakterystyka opon zimowych
 </Typography>
                     <Typography variant="body1" >

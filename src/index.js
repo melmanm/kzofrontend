@@ -17,19 +17,26 @@ import store from './store.js';
 import CookieMessage from './Components/CookieMessage';
 import Footer from './Components/Footer';
 import { BrowserRouter, HashRouter, useHistory } from 'react-router-dom';
+import ScrollToTop from './ScrollToTop';
 //const unsubscribe = store.subscribe(() => console.log(store.getState()));
+window.onbeforeunload = (e) => {
+    setTimeout(function() { window.scrollTo(0, 0); }, 0);
+    };
 
-ReactDOM.render(<Provider store={store}>
+ReactDOM.render(
+    <div>
+<Provider store={store}>
     <ThemeProvider theme={theme}>
-    <HashRouter>
+    <BrowserRouter>
         <App/>
         <CookieMessage/>
         <Footer/>
-    </HashRouter>
+    </BrowserRouter>
     </ThemeProvider>
-    </Provider>, document.getElementById('root'));
+    </Provider>
+    </div>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

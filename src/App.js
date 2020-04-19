@@ -23,24 +23,33 @@ import ScrollToTop from './ScrollToTop';
 import ReactGA from 'react-ga';
 ReactGA.initialize('UA-162359441-1');
 
+const mainRoute = () =>
+{
+  return(
+   
+    <div></div>
+  );
+}
+
 function App() {
   const history = useHistory();
   useEffect(() => {
-    history.listen(x=>{ReactGA.pageview(x.pathname);});
+    history.listen(x=>{ReactGA.pageview(x.pathname);window.scrollTo(0,0)});
     ReactGA.pageview(history.location.pathname);
+    window.scrollTo(0,0);
 }, []);
   return (
     <div>
-      <ScrollToTop/>
       <Switch>
+     
       <Route exact path="/" component={Welcome} />
       <Route path="/result" component={ResultComponent} />
       <Route path="/polityka-prywatnosci" component={PrivacyComponent} />
       <Route path="/na-zimowe" component={ToWinter} />
       <Route path="/na-letnie" component={ToSummer} />
       <Route path="/regulamin" component={Rules} />
-      <Route path='*' component={Welcome} />
-      </Switch>
+      <Redirect path="/*"to="/"/>
+      </Switch> 
       </div>
   );
 }
