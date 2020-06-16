@@ -18,7 +18,7 @@ const GraphComponent = ({ data, isAvailable }) => {
     }, [])
 
     return (
-        <Grid>
+        <Grid style={{fontFamily:"Barlow, Roboto"}}>
             {isAvailable &&
                 <ResponsiveContainer aspect={4.0 / (width > 700 ? 1.7 : 4.0)} width='100%'>
                     <LineChart data={data.values}
