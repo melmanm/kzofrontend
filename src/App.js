@@ -13,7 +13,7 @@ import {
 } from 'react-router-dom';
 import Welcome from './Components/Welcome';
 import GraphArea from './Components/GraphArea';
-import ResultComponent from './Components/Result';
+import Result from './Components/Result';
 import PrivacyComponent from './Components/StaticSites/Privacy.js'
 import ToWinter from './Components/StaticSites/ToWinter';
 import ToSummer from './Components/StaticSites/ToSummer';
@@ -41,14 +41,14 @@ function App() {
   return (
     <div>
       <Switch>
-     
       <Route exact path="/" component={Welcome} />
-      <Route path="/result" component={ResultComponent} />
+      <Route path="/result" component={Result} />
       <Route path="/polityka-prywatnosci" component={PrivacyComponent} />
       <Route path="/na-zimowe" component={ToWinter} />
       <Route path="/na-letnie" component={ToSummer} />
       <Route path="/regulamin" component={Rules} />
-      <Redirect path="/*"to="/"/>
+      <Route path="/:id" component={Result} />
+      <Route path="/*" component={Welcome} />
       </Switch> 
       </div>
   );

@@ -48,14 +48,15 @@ const ToSummer = () => {
         <div>
             <Helmet>
             
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-                <title>Kiedy zmienić opony na letnie? | kiedyzmienicopony.pl</title>
-                <meta
-                    name="description"
-                    content="Sprawdź kiedy wymienić opony na letnie. Skorzystaj z naszego sewisu i sprawdź naszą rekomendacje wymiany opon na letnie w Twoim mieście."
-                />
-                <meta name="keywords" content="zmiana opon, opony letnie, wymiana sezonowa, wymiana opon na letnie" />
+            <title>Kiedy zmienić opony na letnie? | kiedyzmienicopony.pl</title>
+            <meta name="description"
+                content="Sprawdź kiedy wymienić opony na letnie. Skorzystaj z naszego sewisu i sprawdź naszą rekomendacje wymiany opon na letnie w Twoim mieście."/>
+            <meta name="keywords" content="zmiana opon, opony letnie, wymiana sezonowa, wymiana opon na letnie" />
+            <meta property="og:title" content={`Kiedy wymienić opony w smochodzie na lentnie.`}></meta>
+            <meta property="og:description" content={`Czy już czas na sezonową wymianę opon na na letnie. Obliczamy rekomendacje zmiany opon dla Twojej lokalizacji.`}></meta>
+            <meta property="og:url" content={`http://kiedyzmienicopony.pl/na-letnie`}></meta>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta name="theme-color" content="#000000" />
             </Helmet>
             <MenuBar></MenuBar>
             <Container maxWidth="md" className={classes.container} style={{ minHeight: '100vh' }} >

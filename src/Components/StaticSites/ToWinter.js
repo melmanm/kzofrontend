@@ -46,15 +46,15 @@ const ToWinter = () => {
     return (
         <div>
             <Helmet>
-            
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-                <title>Kiedy zmienić opony na zimowe? | kiedyzmienicopony.pl</title>
-                <meta
-                    name="description"
-                    content="Sprawdź kiedy wymienić opony na zimowe. Skorzystaj z naszej aplikacji i sprawdź naszą rekomendacje wymiany opon na zimowe w Twoim mieście."
-                />
-                <meta name="keywords" content="zmiana opon, opony zimowe, wymiana sezonowa, wymiana opon na zimowe" />
+            <title>Kiedy zmienić opony na zimowe? | kiedyzmienicopony.pl</title>
+            <meta name="description"
+                content="Sprawdź kiedy wymienić opony na zimowe. Skorzystaj z naszego sewisu i sprawdź naszą rekomendacje wymiany opon na zimowe w Twoim mieście."/>
+            <meta name="keywords" content="zmiana opon, opony zimowe, wymiana sezonowa, wymiana opon na zimowe" />
+            <meta property="og:title" content={`Kiedy wymienić opony w smochodzie na lentnie.`}></meta>
+            <meta property="og:description" content={`Czy już czas na sezonową wymianę opon na na zimowe. Obliczamy rekomendacje zmiany opon dla Twojej lokalizacji.`}></meta>
+            <meta property="og:url" content={`http://kiedyzmienicopony.pl/na-zimowe`}></meta>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta name="theme-color" content="#000000" />
             </Helmet>
             <MenuBar></MenuBar>
             <Container maxWidth="md" className={classes.container} style={{ minHeight: '100vh' }} >

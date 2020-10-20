@@ -53,6 +53,9 @@ const WelcomeComponent = ({ city }) => {
                     content="Czy już czas na sezonową wymianę opon na zimowe / na letnie? Obliczamy rekomendacje zmiany opon dla Twojej lokalizacji. Sprawdź czy już wymienić opony."
                 />
                 <meta name="keywords" content="zmiana opon, kiedy wymienić opony, czy już wymienić opony, wymiana opon na letnie, wymiana opon na zimowe" />
+                <meta property="og:title" content={`Kiedy wymienić opony w smochodzie.`}></meta>
+                <meta property="og:description" content={`Czy już czas na sezonową wymianę opon na ziomowe lub na letnie. Obliczamy rekomendacje zmiany opon dla Twojej lokalizacji.`}></meta>
+                <meta property="og:url" content={`http://kiedyzmienicopony.pl`}></meta>
             </Helmet>
 
 
