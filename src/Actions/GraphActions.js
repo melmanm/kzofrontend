@@ -53,32 +53,33 @@ export const resultCalculated = (result) => ({
 export const fetchForecast = (lon, lat) => (dispatch) => {
     if(lon === null && lat === null)
         return;
-    fetch(`https://api.met.no/weatherapi/locationforecast/1.9/?lat=${lat}&lon=${lon}`)
+    fetch(`https://api.met.no/weatherapi/locationforecast/2.0/?lat=${lat}&lon=${lon}`)
         .then(response => response.text())
-        .then(res => convert.xml2json(res, { compact: true, spaces: 4 }))
+        //.then(res => convert.xml2json(res, { compact: true, spaces: 4 }))
         .then(res => JSON.parse(res))
-        .then(json => json.weatherdata.product.time)
-        .then(data => data.map(it => ({ data: it, fromDate: new Date(it._attributes.from), toDate: new Date(it._attributes.to) })))
+        .then(json => json.properties.timeseries)
+        .then(data => data.map(it => ({ data: it.data.instant.details, fromDate: new Date(it.time) })))
         .then(arr => {
-            let raw = arr.filter(it => it.fromDate.getTime() == it.toDate.getTime());
+            let raw = arr;
             let data = {};
             data.values = [];
 
             for (let i = 0; i < raw.length; i++) {
                 let available = data.values.filter(x=>x.date == getShortDate(raw[i].fromDate))[0];
+                if(raw[i].data.air_temperature != undefined)
                 if(available == null){
                 data.values.push(
                     {
                         date: getShortDate(raw[i].fromDate),
-                        max: raw[i].data.location.temperature._attributes.value,
-                        min: raw[i].data.location.temperature._attributes.value,
+                        max: raw[i].data.air_temperature,
+                        min: raw[i].data.air_temperature,
                         morningMes: raw[i].fromDate.getHours() > 9 && raw[i].fromDate.getHours() < 16,
                         eveningMes: raw[i].fromDate.getHours() > 22 || raw[i].fromDate.getHours () < 6
                     }
                 );}
                 else{
-                    available.max = Math.max(available.max,raw[i].data.location.temperature._attributes.value);
-                    available.min = Math.min(available.min,raw[i].data.location.temperature._attributes.value);
+                    available.max = Math.max(available.max,raw[i].data.air_temperature);
+                    available.min = Math.min(available.min,raw[i].data.air_temperature);
                     available.points++;
                     available.morningMes= (raw[i].fromDate.getHours() > 9 && raw[i].fromDate.getHours() < 16) ||   available.morningMes;
                     available.eveningMes= (raw[i].fromDate.getHours() > 22 || raw[i].fromDate.getHours() < 6) ||  available.eveningMes;

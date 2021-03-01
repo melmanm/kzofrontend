@@ -47,19 +47,19 @@ const ResultComponent = ({city}) => {
         </Typography>
         </div>}
         
-        
+        <Container>
         <Grid container spacing={1}  alignItems="center">
-        <Grid item md={2} xs={12} >
+        <Grid item md={2} xs={12}>
             <DrivingRoutine type="icon"></DrivingRoutine>
         </Grid>
         <Grid item md={8} xs={12}>
             <Search></Search>
         </Grid>
-       
         <Grid item md={2} xs={12}>
             <SearchButton></SearchButton>
         </Grid>
         </Grid>
+        </Container>
         <Spinner></Spinner>
         <CalculationResult></CalculationResult>
         <GraphArea>
